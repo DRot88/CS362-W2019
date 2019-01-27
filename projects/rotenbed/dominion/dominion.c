@@ -648,7 +648,7 @@ int smithy_function(int handPos, struct gameState *state)
   int i;
   int currentPlayer = whoseTurn(state);
   //+3 Cards
-  for (i = 0; i < 3; i++)
+  for (i = 0; i < 4; i++) // BUG INTRODUCED: current player draws 4 cards instead of 3
   {
     drawCard(currentPlayer, state);
   }
@@ -679,6 +679,7 @@ int adventurer_function(int handPos, struct gameState *state)
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
       z++;
     }
+    drawntreasure = 0; // BUG INTRODUCED: drawntreasure is reset to zero, causing an infinite loop when played
   }
   while(z-1>=0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
@@ -692,16 +693,16 @@ int village_function(int handPos, struct gameState *state)
   int currentPlayer = whoseTurn(state); // to get current player for draw card function below
   //+1 Card
   drawCard(currentPlayer, state);
-  
+  drawCard(currentPlayer, state); // BUG INTRODUCED: Should only draw 1 card, not 2
   //+2 Actions
-  state->numActions = state->numActions + 2;
+  state->numActions = state->numActions + 1; // BUG INTRODUCED: Action count should be incremented by 2, not 1
   
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
   return 0;  
 }
 
-int steward_function(int handPos, struct gameState *state, int choice1, int choice2, int choice3) 
+int steward_function(int handPos, struct gameState *state, int choice2, int choice1, int choice3)  // BUG INTRODUCED: Choice1 and Choice2 have been swapped
 {
   int currentPlayer = whoseTurn(state);
 
