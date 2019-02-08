@@ -27,6 +27,12 @@ cardTest1: cardTest1.c dominion.o rngs.o
 cardTest2: cardTest2.c dominion.o rngs.o
 	gcc -o cardtest2 -g  cardTest2.c dominion.o rngs.o $(CFLAGS)
 
+cardTest3: cardTest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g  cardTest3.c dominion.o rngs.o $(CFLAGS)
+
+cardTest4: cardTest4.c dominion.o rngs.o interface.o
+	gcc -o cardtest4 -g  cardTest4.c dominion.o rngs.o interface.o $(CFLAGS)
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
@@ -38,7 +44,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player cardTest1 cardTest2
+all: playdom player cardTest1 cardTest2 cardTest3 cardTest4
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe cardTest1 cardTest1.exe cardTest2 cardTest2.exe *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe cardTest1 cardTest1.exe cardTest2 cardTest2.exe cardTest3 cardTest3.exe	cardTest4 cardTest4.exe *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
