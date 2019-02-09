@@ -53,6 +53,40 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+unittestresults: cardTest1 cardTest2 cardTest3 cardTest4 unitTest1 unitTest2 unitTest3 unitTest4
+	./cardTest1 >> unittestresults.out
+	gcov cardTest1.c -b >> unittestresults.out
+	cat cardTest1.c.gcov >> unittestresults.out
+
+	./cardTest3 >> unittestresults.out
+	gcov cardTest3.c -b >> unittestresults.out
+	cat cardTest3.c.gcov >> unittestresults.out
+
+	./cardTest4 >> unittestresults.out
+	gcov cardTest4.c -b >> unittestresults.out
+	cat cardTest4.c.gcov >> unittestresults.out
+
+	./unitTest1 >> unittestresults.out
+	gcov unitTest1.c -b >> unittestresults.out
+	cat unitTest1.c.gcov >> unittestresults.out
+
+	./unitTest2 >> unittestresults.out
+	gcov unitTest2.c -b >> unittestresults.out
+	cat unitTest2.c.gcov >> unittestresults.out
+
+	./unitTest3 >> unittestresults.out
+	gcov unitTest3.c -b >> unittestresults.out
+	cat unitTest3.c.gcov >> unittestresults.out
+
+	./unitTest4 >> unittestresults.out
+	gcov unitTest4.c -b >> unittestresults.out
+	cat unitTest4.c.gcov >> unittestresults.out
+
+# CARD TEST 2 WILL CAUSE INFINITE LOOP, CTRL+C TO CLOSE
+	./cardTest2 >> unittestresults.out
+	gcov cardTest2.c -b >> unittestresults.out
+	cat cardTest2.c.gcov >> unittestresults.out	
+					
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
