@@ -21,6 +21,7 @@
 
 
 #define TESTCARD "adventurer"
+#define NUM_TESTS 100
 
 // assertTrue function so testing continues
 
@@ -47,10 +48,10 @@ int main() {
   sigaction(SIGINT, sa, NULL);  
 
   // variables to start game
-  int playerCount = 2;
+  int playerCount = rand() % 6 + 1;
   int kingdom[10] = {adventurer, embargo, village, minion, mine, cutpurse,
       sea_hag, tribute, smithy, council_room};
-  int seed = 2000;
+  int seed = rand() % 3000;
   struct gameState GS, testGS;
 
   // Storage for cards
