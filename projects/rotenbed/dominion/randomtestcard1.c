@@ -47,10 +47,10 @@ int main() {
   sigaction(SIGINT, sa, NULL);  
 
   // variables to start game
-  int playerCount = 2;
+  int playerCount = rand() % 6 + 1;
   int kingdom[10] = {adventurer, great_hall, village, minion, mine, cutpurse,
       remodel, tribute, smithy, council_room};
-  int seed = 2000;
+  int seed = rand() % 4000;
   struct gameState GS, testGS;
 
   // Storage for cards
