@@ -22,6 +22,7 @@
 ************************************************************************/
 
 #define TESTCARD "great_hall"
+#define NUM_TESTS 100
 
 void assertTrue(int expression) {
   if (expression == 1) {
@@ -80,6 +81,8 @@ int main() {
   // Initialize Game State and Player Cards
   initializeGame(playerCount,kingdom,seed, &GS);
 
+ 
+ for (int i = 0; i < NUM_TESTS; i++) { // run tests for the amount of times listed in NUM_TESTS
   // Inform user which card is being tested
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD);
 
@@ -132,7 +135,7 @@ int main() {
   printf("Actions AFTER playing great_hall: %d\n", testActionCount);
   printf("Action Count: %d, Expected Action Count: %d\n", testActionCount, expectedActionCount);
   assertTrue(testActionCount == expectedActionCount);
-
+}
   return 0;
 }
 
@@ -148,5 +151,3 @@ int main() {
 //   //discard card from hand
 //   discardCard(handPos, currentPlayer, state, 0);
 //   return 0;
-
-// assertTrue function so testing continues
